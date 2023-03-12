@@ -1,17 +1,10 @@
 import * as THREE from "three";
-import animate from "./animate";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
-  75, // FOV - field of view
-  window.innerWidth / window.innerHeight, // aspect ratio
-  0.1, // near
-  1000 // far
-);
+import animate from "./animate";
+import init from "./init";
 
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(window.innerWidth, window.innerHeight);
+const { scene, camera, renderer } = init();
 document.body.appendChild(renderer.domElement);
 
 // To check import jsm
@@ -26,7 +19,5 @@ const material = new THREE.MeshBasicMaterial({
 });
 const cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
-
-camera.position.z = 10;
 
 animate({ scene, camera, renderer, cube });
